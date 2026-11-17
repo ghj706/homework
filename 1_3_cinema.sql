@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 16, 2026 at 10:33 PM
--- Server version: 10.1.48-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Nov 17, 2026 at 09:01 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `1.3 cinema`
+-- Database: `1_3_cinema`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `movies` (
-  `id` int(11) NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `genre` text COLLATE utf8mb4_unicode_ci,
-  `dur_min` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `genre` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dur_min` int DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `age_rate` text COLLATE utf8mb4_unicode_ci,
-  `rate` text COLLATE utf8mb4_unicode_ci,
-  `synopsis` text COLLATE utf8mb4_unicode_ci,
-  `showing` text COLLATE utf8mb4_unicode_ci
+  `age_rate` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rate` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `synopsis` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `showing` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -44,9 +44,9 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `name`, `genre`, `dur_min`, `date`, `age_rate`, `rate`, `synopsis`, `showing`) VALUES
-(1, 'Мой сосед Тоторо', 'Фентези', 88, '1988-04-16', '6+', '8.1/10', 'Когда две девочки переезжают в сельскую местность, чтобы быть поближе к своей больной матери, их ждут приключения в компании удивительных лесных духов, обитающих поблизости.', 'Нет'),
-(2, 'Закулисье реальности', 'Ужасы', 105, '2026-05-29', '18+', '6.7/10', 'Кларк, раздражительный архитектор, пытается выяснить причину необъяснимых сбоев в электросети, когда в его подвале открывается светящийся проход; однако желтый лабиринт, скрывающийся за ним, угрожает его рассудку, его друзьям и Мэри.', 'Да'),
-(3, 'Последний киногерой', 'экшн', 131, '1993-06-18', '13+', '6.5/10', 'С помощью волшебного билета юный киноман переносится в вымышленный мир своего любимого героя боевиков.', 'Нет');
+(1, 'Мой сосед Тоторо', 'Фентези', 88, '1988-04-16', '6+', '8.1/10', 'Когда две девочки переезжают в сельскую местность, чтобы быть поближе к своей больной матери, их ждут приключения в компании удивительных лесных духов, обитающих поблизости.', 0),
+(2, 'Закулисье реальности', 'Ужасы', 105, '2026-05-29', '18+', '6.7/10', 'Кларк, раздражительный архитектор, пытается выяснить причину необъяснимых сбоев в электросети, когда в его подвале открывается светящийся проход; однако желтый лабиринт, скрывающийся за ним, угрожает его рассудку, его друзьям и Мэри.', 1),
+(3, 'Последний киногерой', 'экшн', 131, '1993-06-18', '13+', '6.5/10', 'С помощью волшебного билета юный киноман переносится в вымышленный мир своего любимого героя боевиков.', 0);
 
 --
 -- Indexes for dumped tables
@@ -66,7 +66,7 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
