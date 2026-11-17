@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 16, 2026 at 10:33 PM
--- Server version: 10.1.48-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Nov 17, 2026 at 09:02 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `1.5 shop`
+-- Database: `1_5_shop`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `category` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `id` int NOT NULL,
+  `category` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49,13 +49,13 @@ INSERT INTO `categories` (`id`, `category`, `description`) VALUES
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `amount` int NOT NULL,
   `arrival_date` date NOT NULL,
-  `product_avaiable` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` int(11) NOT NULL
+  `product_avaiable` tinyint(1) NOT NULL,
+  `category_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -63,11 +63,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `amount`, `arrival_date`, `product_avaiable`, `category_id`) VALUES
-(1, 'Куртка', 200, 240, '2026-11-01', 'Да', 3),
-(2, 'Футбольный мяч', 120, 100, '2026-09-26', 'Нет', 1),
-(3, 'Сыр', 190, 200, '2026-11-01', 'Да', 2),
-(4, 'Футболка', 1000, 450, '2026-09-18', 'Да', 3),
-(5, 'Туфли', 500, 340, '2026-09-11', 'Да', 3);
+(1, 'Куртка', '200', 240, '2026-11-01', 1, 3),
+(2, 'Футбольный мяч', '120', 100, '2026-09-26', 0, 1),
+(3, 'Сыр', '190', 200, '2026-11-01', 1, 2),
+(4, 'Футболка', '1000', 450, '2026-09-18', 1, 3),
+(5, 'Туфли', '500', 340, '2026-09-11', 1, 3);
 
 --
 -- Indexes for dumped tables
@@ -94,13 +94,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
