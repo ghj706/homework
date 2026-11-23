@@ -11,4 +11,5 @@
     <button>Добавить</button>
 </form>
 <?php
-$res = require("calculator.php");
+// $res = require("calculator.php");
+print_r($_GET);

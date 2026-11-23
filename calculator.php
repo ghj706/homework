@@ -4,31 +4,31 @@ function calculator($a, $b, $operation){
 	switch($operation){
 		case "+":
 			$result = $a + $b;
-			echo $result;
+				return $result;
 			break;
 		case "-":
 			$result = $a - $b;
-			echo $result;
+			return $result;
 			break;
 		case "*":
 			$result = $a * $b;
-			echo $result;
+			return $result;
 			break;
 		case "/":
 			if (($a == 0) or ($b == 0)) {
-				echo"Ошибка: Делить на ноль нельзя";
+				return"Ошибка: Делить на ноль нельзя";
 				break;
 			} else {
 				$result = $a / $b;
-				echo $result;
+				return $result;
 				break;
 			}
 		case "**":
 			$result = $a ** $b;
-			echo $result;
+			return $result;
 			break;
 		default:
-			echo"Ошибка: Неизвестная операция";
+			return"Ошибка: Неизвестная операция";
 	}
 }
 
@@ -36,8 +36,11 @@ $a=$_POST['a'] ??"";
 $b=$_POST['b'] ??"";
 $oper=$_POST['oper'] ??"";
 if ((is_numeric($a) == false) or (is_numeric($b) == false)){
+	header("calculator_form.php");
 	echo "Введите числа";
 } else {
-	calculator($a, $b, $oper);
+	$response = calculator($a, $b, $oper);
+	header("Location: calculator_form.php?response=" . $response);
+	
 }
 
