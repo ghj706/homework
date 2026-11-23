@@ -31,23 +31,13 @@ function calculator($a, $b, $operation){
 			echo"Ошибка: Неизвестная операция";
 	}
 }
-echo "+: ";
-calculator(4, 2, "+");
-echo"
--: ";
-calculator(4, 2, "-");
-echo"
-*: ";
-calculator(4, 2, "*");
-echo"
-/: ";
-calculator(4, 2, "/");
-echo"
-**: ";
-calculator(4, 2, "**");
-echo"
-Деление на ноль: ";
-calculator(4, 0, "/");
-echo"
-Неизвестная операция: ";
-calculator(4, 2, "%");
+
+$a=$_POST['a'] ??"";
+$b=$_POST['b'] ??"";
+$oper=$_POST['oper'] ??"";
+if ((is_numeric($a) == false) or (is_numeric($b) == false)){
+	echo "Введите числа";
+} else {
+	calculator($a, $b, $oper);
+}
+
